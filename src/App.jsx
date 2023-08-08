@@ -1,10 +1,8 @@
-function App() {
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
-  return (
-    <>
-     
-    </>
-  )
+function App() {
+  return <></>;
 }
 
-export default App
+export default App;
