@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Form } from "../../components/forms/Form/form";
 import { Input } from "../../components/forms/Input/input";
 
@@ -20,9 +21,13 @@ export const LoginPage = () => {
           placeholder="Digite sua senha"
           required={true}
         />
-        <button>Entrar</button>
+        <Link to="/dashboard">
+          <button>Entrar</button>
+        </Link>
         <p>Ainda não possui uma conta?</p>
-        <button>Cadastre-se</button>
+        <Link to="/register">
+          <button>Cadastre-se</button>
+        </Link>
       </Form>
     </>
   );
