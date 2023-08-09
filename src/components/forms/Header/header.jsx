@@ -5,6 +5,7 @@ export const Header = () => {
 
   const handleLogoutButtonClick = () => {
     localStorage.removeItem("@kenzieHub:token");
+    // limpa o estado do usuário
     navigate("/");
   };
 
