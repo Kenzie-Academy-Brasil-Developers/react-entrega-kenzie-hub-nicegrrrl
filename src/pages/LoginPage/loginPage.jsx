@@ -2,9 +2,17 @@ import { Link } from "react-router-dom";
 import { Form } from "../../components/forms/Form/form";
 import { Input } from "../../components/forms/Input/input";
 import { useForm } from "react-hook-form";
+import { loginFormSchema } from "./loginFormSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const LoginPage = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(loginFormSchema),
+  });
 
   const submit = (formData) => {
     console.log(formData);
@@ -21,6 +29,7 @@ export const LoginPage = () => {
           placeholder="Digite seu email"
           register={register("email")}
         />
+        {errors.email ? <span>{errors.email.message}</span> : null}
         <Input
           label="Senha"
           type="password"
@@ -28,6 +37,8 @@ export const LoginPage = () => {
           placeholder="Digite sua senha"
           register={register("password")}
         />
+        {errors.password ? <span>{errors.password.message}</span> : null}
+
         {/* <Link to="/dashboard"> */}
         <button type="submit">Entrar</button>
         {/* </Link> */}
