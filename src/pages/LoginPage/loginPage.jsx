@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Form } from "../../components/forms/Form/form";
 import { Input } from "../../components/forms/Input/input";
 import { useForm } from "react-hook-form";
 import { loginFormSchema } from "./loginFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { api } from "../../services/api.js";
+import { toast } from "react-toastify";
+import { useState } from "react";
 
 export const LoginPage = () => {
   const {
@@ -14,8 +17,27 @@ export const LoginPage = () => {
     resolver: zodResolver(loginFormSchema),
   });
 
+  // const [user, setUser] = useState("");
+  // console.log(user);
+
+  const navigate = useNavigate();
+
+  const userLoginRequest = async (formData) => {
+    try {
+      const { data } = await api.post("/sessions", formData);
+      // console.log(data);
+      // console.log(data.user);
+      // setUser(data.user);
+      // por que não estou conseguindo setar o data.user no estado?! :()
+      localStorage.setItem("@kenzieHub:token", data.token);
+      navigate("/dashboard");
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+
   const submit = (formData) => {
-    console.log(formData);
+    userLoginRequest(formData);
   };
 
   return (
@@ -39,9 +61,7 @@ export const LoginPage = () => {
         />
         {errors.password ? <p>{errors.password.message}</p> : null}
 
-        {/* <Link to="/dashboard"> */}
         <button type="submit">Entrar</button>
-        {/* </Link> */}
         <p>Ainda não possui uma conta?</p>
         <Link to="/register">
           <button>Cadastre-se</button>
