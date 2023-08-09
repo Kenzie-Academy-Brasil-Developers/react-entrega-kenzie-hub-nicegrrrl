@@ -1,13 +1,13 @@
 import { DefaultTemplate } from "../DefaultTemplate/defaultTemplate";
 
-export const DashboardPage = () => {
+export const DashboardPage = ({ user, setUser }) => {
   return (
     <>
-      <DefaultTemplate>
+      <DefaultTemplate setUser={setUser}>
         <section>
           <div>
-            <span>Olá, Samuel Leão</span>
-            <span>Primeiro módulo (Introdução ao Frontend)</span>
+            <span>Olá, {user.name}</span>
+            <span>{user.course_module}</span>
           </div>
         </section>
         <section>

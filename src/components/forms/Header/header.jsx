@@ -1,11 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export const Header = () => {
+export const Header = ({ setUser }) => {
   const navigate = useNavigate();
 
   const handleLogoutButtonClick = () => {
     localStorage.removeItem("@kenzieHub:token");
-    // limpa o estado do usuário
+    setUser({});
     navigate("/");
   };
 

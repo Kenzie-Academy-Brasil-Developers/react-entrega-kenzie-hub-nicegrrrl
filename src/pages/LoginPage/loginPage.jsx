@@ -6,9 +6,8 @@ import { loginFormSchema } from "./loginFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../../services/api.js";
 import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
 
-export const LoginPage = () => {
+export const LoginPage = ({ user, setUser }) => {
   const {
     register,
     handleSubmit,
@@ -17,19 +16,12 @@ export const LoginPage = () => {
     resolver: zodResolver(loginFormSchema),
   });
 
-  // const [user, setUser] = useState(null);
-  // console.log(user);
-
   const navigate = useNavigate();
 
   const userLoginRequest = async (formData) => {
     try {
       const { data } = await api.post("/sessions", formData);
-      console.log(data);
-      console.log(data.user);
-      // const currentUser = data.user;
-      // setUser(data.user);
-      // setUser("usuário");
+      setUser(data.user);
       localStorage.setItem("@kenzieHub:token", data.token);
       navigate("/dashboard");
     } catch (error) {
@@ -65,7 +57,7 @@ export const LoginPage = () => {
         <button type="submit">Entrar</button>
         <Link to="/register">
           <p>Ainda não possui uma conta?</p>
-          <button>Cadastre-se</button>
+          <button type="button">Cadastre-se</button>
         </Link>
       </Form>
     </>
