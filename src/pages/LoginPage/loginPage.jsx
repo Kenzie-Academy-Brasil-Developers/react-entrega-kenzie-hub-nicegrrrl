@@ -6,7 +6,7 @@ import { loginFormSchema } from "./loginFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../../services/api.js";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const LoginPage = () => {
   const {
@@ -17,7 +17,7 @@ export const LoginPage = () => {
     resolver: zodResolver(loginFormSchema),
   });
 
-  // const [user, setUser] = useState("");
+  // const [user, setUser] = useState(null);
   // console.log(user);
 
   const navigate = useNavigate();
@@ -25,10 +25,11 @@ export const LoginPage = () => {
   const userLoginRequest = async (formData) => {
     try {
       const { data } = await api.post("/sessions", formData);
-      // console.log(data);
-      // console.log(data.user);
+      console.log(data);
+      console.log(data.user);
+      // const currentUser = data.user;
       // setUser(data.user);
-      // por que não estou conseguindo setar o data.user no estado?! :()
+      // setUser("usuário");
       localStorage.setItem("@kenzieHub:token", data.token);
       navigate("/dashboard");
     } catch (error) {
@@ -62,8 +63,8 @@ export const LoginPage = () => {
         {errors.password ? <p>{errors.password.message}</p> : null}
 
         <button type="submit">Entrar</button>
-        <p>Ainda não possui uma conta?</p>
         <Link to="/register">
+          <p>Ainda não possui uma conta?</p>
           <button>Cadastre-se</button>
         </Link>
       </Form>
