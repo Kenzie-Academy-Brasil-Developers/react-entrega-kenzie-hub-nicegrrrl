@@ -1,4 +1,4 @@
-// export const Input = ({ ...rest }) => {
+// export const Input = ({ label, ...rest }) => {
 //   return (
 //     <div {...rest}>
 //       <label htmlFor={id}>{label}</label>
@@ -7,16 +7,11 @@
 //   );
 // };
 
-export const Input = ({ label, type, id, placeholder, required }) => {
+export const Input = ({ label, type, id, placeholder, register }) => {
   return (
     <div>
       <label htmlFor={id}>{label}</label>
-      <input
-        type={type}
-        id={id}
-        placeholder={placeholder}
-        required={required}
-      />
+      <input type={type} id={id} placeholder={placeholder} {...register} />
     </div>
   );
 };

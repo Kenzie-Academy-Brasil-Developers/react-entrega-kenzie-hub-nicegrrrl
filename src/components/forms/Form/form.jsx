@@ -12,9 +12,9 @@
 //   );
 // };
 
-export const Form = ({ children, title, text }) => {
+export const Form = ({ children, title, text, handleSubmit, submit }) => {
   return (
-    <form>
+    <form onSubmit={handleSubmit(submit)}>
       <div>
         <h2>{title}</h2>
         {text !== "" ? <span>{text}</span> : null}
