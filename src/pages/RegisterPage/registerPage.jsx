@@ -5,6 +5,8 @@ import { Input } from "../../components/forms/Input/input";
 import { Select } from "../../components/forms/Select/select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerFormSchema } from "./registerFormSchema";
+import { api } from "../../services/api.js";
+import { useNavigate } from "react-router-dom";
 
 export const RegisterPage = () => {
   const {
@@ -13,8 +15,20 @@ export const RegisterPage = () => {
     formState: { errors },
   } = useForm({ resolver: zodResolver(registerFormSchema) });
 
+  const navigate = useNavigate();
+
+  const userRegisterRequest = async (formData) => {
+    try {
+      const { data } = await api.post("/users", formData);
+      console.log(data);
+      navigate("/");
+    } catch (error) {
+      toast.error(error);
+    }
+  };
+
   const submit = (formData) => {
-    console.log(formData);
+    userRegisterRequest(formData);
     toast.success("Cadastro realizado com sucesso 🎉");
   };
 
@@ -77,7 +91,7 @@ export const RegisterPage = () => {
           register={register("contact")}
         />
         {errors.contact ? <p>{errors.contact.message}</p> : null}
-        <Select label="Selecionar módulo" register={register("module")}>
+        <Select label="Selecionar módulo" register={register("course_module")}>
           <option value="" selected disabled>
             Selecione um módulo
           </option>
@@ -88,7 +102,7 @@ export const RegisterPage = () => {
           <option value="fifthModule">Quinto Módulo</option>
           <option value="sixthModule">Sexto Módulo</option>
         </Select>
-        {errors.module ? <p>{errors.module.message}</p> : null}
+        {errors.course_module ? <p>{errors.course_module.message}</p> : null}
         <button type="submit">Cadastrar</button>
       </Form>
     </>
