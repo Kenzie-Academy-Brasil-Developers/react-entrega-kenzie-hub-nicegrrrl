@@ -29,7 +29,7 @@ export const LoginPage = () => {
           placeholder="Digite seu email"
           register={register("email")}
         />
-        {errors.email ? <span>{errors.email.message}</span> : null}
+        {errors.email ? <p>{errors.email.message}</p> : null}
         <Input
           label="Senha"
           type="password"
@@ -37,7 +37,7 @@ export const LoginPage = () => {
           placeholder="Digite sua senha"
           register={register("password")}
         />
-        {errors.password ? <span>{errors.password.message }</span> : null}
+        {errors.password ? <p>{errors.password.message}</p> : null}
 
         {/* <Link to="/dashboard"> */}
         <button type="submit">Entrar</button>
