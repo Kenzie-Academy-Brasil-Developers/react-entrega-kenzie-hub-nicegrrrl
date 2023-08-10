@@ -6,8 +6,8 @@ export const DashboardPage = ({ user, setUser }) => {
       <DefaultTemplate setUser={setUser}>
         <section>
           <div>
-            <span>Olá, {user.name}</span>
-            <span>{user.course_module}</span>
+            <span>Olá, {user?.name}</span>
+            <span>{user?.course_module}</span>
           </div>
         </section>
         <section>

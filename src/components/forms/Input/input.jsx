@@ -1,3 +1,5 @@
+import styles from "./style.module.scss";
+
 // export const Input = ({ label, ...rest }) => {
 //   return (
 //     <div {...rest}>
@@ -9,10 +11,10 @@
 
 export const Input = ({ label, type, id, placeholder, register }) => {
   return (
-    <div>
+    <div className={styles.inputContainer}>
       <label htmlFor={id}>{label}</label>
       <input
-        className="input"
+        className="input paragraph"
         type={type}
         id={id}
         placeholder={placeholder}

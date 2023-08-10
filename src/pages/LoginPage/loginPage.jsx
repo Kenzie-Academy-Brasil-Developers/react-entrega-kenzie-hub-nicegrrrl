@@ -6,6 +6,7 @@ import { loginFormSchema } from "./loginFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../../services/api.js";
 import { toast } from "react-toastify";
+import logo from "../../assets/logo.svg";
 
 export const LoginPage = ({ user, setUser }) => {
   const {
@@ -32,32 +33,44 @@ export const LoginPage = ({ user, setUser }) => {
   const submit = (formData) => {
     userLoginRequest(formData);
   };
-
+1
   return (
     <>
-      <h1>Kenzie Hub</h1>
-      <Form title="Login" text="" handleSubmit={handleSubmit} submit={submit}>
-        <Input
-          label="Email"
-          type="email"
-          id="email"
-          placeholder="Digite seu email"
-          register={register("email")}
-        />
-        {errors.email ? <p>{errors.email.message}</p> : null}
-        <Input
-          label="Senha"
-          type="password"
-          id="password"
-          placeholder="Digite sua senha"
-          register={register("password")}
-        />
-        {errors.password ? <p>{errors.password.message}</p> : null}
+      <main className="pageBox">
+        <div className="container small">
+          <img src={logo} alt="kenzie hub logo" />
+          {/* <h1 className="text1 center pink">Kenzie Hub</h1> */}
+          <div>
+            <Form
+              title="Login"
+              text=""
+              handleSubmit={handleSubmit}
+              submit={submit}
+            >
+              <Input
+                label="Email"
+                type="email"
+                id="email"
+                placeholder="Digite seu email"
+                register={register("email")}
+              />
+              {errors.email ? <p>{errors.email.message}</p> : null}
+              <Input
+                label="Senha"
+                type="password"
+                id="password"
+                placeholder="Digite sua senha"
+                register={register("password")}
+              />
+              {errors.password ? <p>{errors.password.message}</p> : null}
 
-        <button type="submit">Entrar</button>
-        <Link to="/register">Ainda não possui uma conta?</Link>
-        <Link to="/register">Cadastre-se</Link>
-      </Form>
+              <button type="submit">Entrar</button>
+              <Link to="/register">Ainda não possui uma conta?</Link>
+              <Link to="/register">Cadastre-se</Link>
+            </Form>
+          </div>
+        </div>
+      </main>
     </>
   );
 };

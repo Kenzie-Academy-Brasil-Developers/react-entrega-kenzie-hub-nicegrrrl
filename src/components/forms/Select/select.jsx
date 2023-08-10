@@ -1,8 +1,10 @@
+import styles from "./style.module.scss";
+
 export const Select = ({ label, id, children, register }) => {
   return (
-    <div>
+    <div className={styles.selectField}>
       <label htmlFor={id}>{label}</label>
-      <select id={id} {...register}>
+      <select className="select" id={id} {...register}>
         {children}
       </select>
     </div>

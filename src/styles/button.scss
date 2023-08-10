@@ -22,7 +22,11 @@
   }
 
   &.negative {
-    background-color: var(--negative);
+    background-color: var(--color-primary-negative);
+  }
+
+  &.negative:hover {
+    background-color: var(--color-primary-focus);
   }
 
   &.disabled {
@@ -32,6 +36,16 @@
   }
 
   &.disabled:hover {
-    background-color: var(--gray-2 );
+    background-color: var(--gray-2);
+  }
+}
+
+.buttonBack {
+  @extend %allButtons;
+  height: 40px;
+  background-color: var(--gray-3);
+
+  &:hover {
+    background-color: var(--gray-2);
   }
 }
