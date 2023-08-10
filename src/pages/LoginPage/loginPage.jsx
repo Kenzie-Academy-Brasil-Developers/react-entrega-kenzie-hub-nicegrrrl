@@ -55,17 +55,16 @@ export const LoginPage = ({ user, setUser }) => {
                 id="email"
                 placeholder="Digite seu email"
                 register={register("email")}
+                error={errors.email}
               />
-              {errors.email ? <p>{errors.email.message}</p> : null}
               <Input
                 label="Senha"
                 type="password"
                 id="password"
                 placeholder="Digite sua senha"
                 register={register("password")}
+                error={errors.password}
               />
-              {errors.password ? <p>{errors.password.message}</p> : null}
-
               <button type="submit" className="buttonPrimary">
                 Entrar
               </button>

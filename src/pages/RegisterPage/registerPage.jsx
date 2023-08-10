@@ -56,53 +56,52 @@ export const RegisterPage = () => {
               id="name"
               placeholder="Digite aqui seu nome"
               register={register("name")}
+              error={errors.name}
             />
-            {errors.name ? <p>{errors.name.message}</p> : null}
             <Input
               label="Email"
               type="email"
               id="email"
               placeholder="Digite aqui seu email"
               register={register("email")}
+              error={errors.email}
             />
-            {errors.email ? <p>{errors.email.message}</p> : null}
             <Input
               label="Senha"
               type="password"
               id="password"
               placeholder="Digite aqui sua senha"
               register={register("password")}
+              error={errors.password}
             />
-            {errors.password ? <p>{errors.password.message}</p> : null}
             <Input
               label="Confirmar senha"
               type="password"
               id="password"
               placeholder="Digite novamente sua senha"
               register={register("confirmPassword")}
+              error={errors.confirmPassword}
             />
-            {errors.confirmPassword ? (
-              <p>{errors.confirmPassword.message}</p>
-            ) : null}
             <Input
               label="Bio"
               type="text"
               id="bio"
               placeholder="Fale sobre você"
               register={register("bio")}
+              error={errors.bio}
             />
-            {errors.bio ? <p>{errors.bio.message}</p> : null}
             <Input
               label="Contato"
               type="text"
               id="contact"
               placeholder="Opção de contato"
               register={register("contact")}
+              error={errors.contact}
             />
-            {errors.contact ? <p>{errors.contact.message}</p> : null}
             <Select
               label="Selecionar módulo"
               register={register("course_module")}
+              error={errors.course_module}
             >
               <option value="" selected disabled>
                 Selecione um módulo
@@ -120,9 +119,6 @@ export const RegisterPage = () => {
                 Quarto módulo (Backend Avançado)
               </option>
             </Select>
-            {errors.course_module ? (
-              <p>{errors.course_module.message}</p>
-            ) : null}
             <button className="buttonPrimary negative" type="submit">
               Cadastrar
             </button>

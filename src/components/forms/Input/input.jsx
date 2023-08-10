@@ -9,7 +9,7 @@ import styles from "./style.module.scss";
 //   );
 // };
 
-export const Input = ({ label, type, id, placeholder, register }) => {
+export const Input = ({ label, type, id, placeholder, register, error }) => {
   return (
     <div className={styles.inputContainer}>
       <label htmlFor={id}>{label}</label>
@@ -20,6 +20,7 @@ export const Input = ({ label, type, id, placeholder, register }) => {
         placeholder={placeholder}
         {...register}
       />
+      {error ? <p className="headline red">{error.message}</p> : null}
     </div>
   );
 };
