@@ -1,5 +1,5 @@
 .title1 {
-  font-size: 18px;
+  font-size: clamp(14px, 4vw, 18px);
   font-weight: 700;
 }
 
@@ -17,7 +17,7 @@
   }
 
   &.gray {
-    color: var(--grey-1);
+    color: var(--gray-1);
   }
 }
 

@@ -33,13 +33,12 @@ export const LoginPage = ({ user, setUser }) => {
   const submit = (formData) => {
     userLoginRequest(formData);
   };
-1
+
   return (
     <>
       <main className="pageBox">
         <div className="container small">
           <img src={logo} alt="kenzie hub logo" />
-          {/* <h1 className="text1 center pink">Kenzie Hub</h1> */}
           <div>
             <Form
               title="Login"
@@ -64,9 +63,15 @@ export const LoginPage = ({ user, setUser }) => {
               />
               {errors.password ? <p>{errors.password.message}</p> : null}
 
-              <button type="submit">Entrar</button>
-              <Link to="/register">Ainda não possui uma conta?</Link>
-              <Link to="/register">Cadastre-se</Link>
+              <button type="submit" className="buttonPrimary">
+                Entrar
+              </button>
+              <Link to="/register" className="headline bold center gray">
+                Ainda não possui uma conta?
+              </Link>
+              <Link to="/register" className="buttonPrimary disabled">
+                Cadastre-se
+              </Link>
             </Form>
           </div>
         </div>
