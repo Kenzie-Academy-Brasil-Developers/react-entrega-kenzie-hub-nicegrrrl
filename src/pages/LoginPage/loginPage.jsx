@@ -55,10 +55,8 @@ export const LoginPage = ({ user, setUser }) => {
         {errors.password ? <p>{errors.password.message}</p> : null}
 
         <button type="submit">Entrar</button>
-        <Link to="/register">
-          <p>Ainda não possui uma conta?</p>
-          <button type="button">Cadastre-se</button>
-        </Link>
+        <Link to="/register">Ainda não possui uma conta?</Link>
+        <Link to="/register">Cadastre-se</Link>
       </Form>
     </>
   );
