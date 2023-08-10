@@ -40,9 +40,9 @@
   }
 }
 
-.buttonBack {
+.buttonMedium {
   @extend %allButtons;
-  height: 40px;
+  height: 36px;
   background-color: var(--gray-3);
 
   &:hover {

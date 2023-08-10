@@ -40,7 +40,7 @@ export const RegisterPage = () => {
         <div className="container small">
           <div className={styles.registerFormTop}>
             <img src={logo} alt="kenzie hub logo" />
-            <Link to="/" className="buttonBack">
+            <Link to="/" className="buttonMedium">
               Voltar
             </Link>
           </div>
@@ -107,12 +107,18 @@ export const RegisterPage = () => {
               <option value="" selected disabled>
                 Selecione um módulo
               </option>
-              <option value="firstModule">Primeiro Módulo</option>
-              <option value="secondModule">Segundo Módulo</option>
-              <option value="thirdModule">Terceiro Módulo</option>
-              <option value="fourthModule">Quarto Módulo</option>
-              <option value="fifthModule">Quinto Módulo</option>
-              <option value="sixthModule">Sexto Módulo</option>
+              <option value="firstModule">
+                Primeiro módulo (Introdução ao Frontend)
+              </option>
+              <option value="secondModule">
+                Segundo módulo (Frontend Avançado)
+              </option>
+              <option value="thirdModule">
+                Terceiro módulo (Introdução ao Backend)
+              </option>
+              <option value="fourthModule">
+                Quarto módulo (Backend Avançado)
+              </option>
             </Select>
             {errors.course_module ? (
               <p>{errors.course_module.message}</p>

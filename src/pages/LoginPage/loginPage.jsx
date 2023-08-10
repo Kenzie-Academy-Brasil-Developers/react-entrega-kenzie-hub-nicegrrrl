@@ -6,7 +6,8 @@ import { loginFormSchema } from "./loginFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../../services/api.js";
 import { toast } from "react-toastify";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/mainLogo.svg";
+import styles from "./style.module.scss";
 
 export const LoginPage = ({ user, setUser }) => {
   const {
@@ -38,7 +39,9 @@ export const LoginPage = ({ user, setUser }) => {
     <>
       <main className="pageBox">
         <div className="container small">
-          <img src={logo} alt="kenzie hub logo" />
+          <div className={styles.logo}>
+            <img src={logo} alt="kenzie hub logo" />
+          </div>
           <div>
             <Form
               title="Login"

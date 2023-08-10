@@ -9,7 +9,7 @@
 }
 
 .headline {
-  font-size: 12px;
+  font-size: clamp(9px, 4vw, 12px);
   font-weight: 500;
 
   &.bold {
