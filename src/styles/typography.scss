@@ -8,6 +8,11 @@
   font-weight: 700;
 }
 
+.bigTitle {
+  font-size: 36px;
+  font-weight: 700;
+}
+
 .headline {
   font-size: clamp(9px, 4vw, 12px);
   font-weight: 500;
@@ -28,6 +33,10 @@
 .paragraph {
   font-size: 16px;
   font-weight: 500;
+
+  &.gray {
+    color: var(--gray-1);
+  }
 }
 
 .center {
