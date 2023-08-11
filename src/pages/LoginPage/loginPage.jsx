@@ -24,11 +24,17 @@ export const LoginPage = ({ user, setUser }) => {
   const userLoginRequest = async (formData) => {
     try {
       const { data } = await api.post("/sessions", formData);
+      console.log(data);
       setUser(data.user);
       localStorage.setItem("@kenzieHub:token", data.token);
       navigate("/dashboard");
     } catch (error) {
-      toast.error(error);
+      if (
+        error.response?.data.message ===
+        "Incorrect email / password combination"
+      ) {
+        toast.error("E-mail ou senha não correspondem 😅");
+      }
     }
   };
 

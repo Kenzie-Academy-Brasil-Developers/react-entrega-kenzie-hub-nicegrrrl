@@ -8,8 +8,6 @@ import { ErrorPage } from "../pages/ErrorPage/errorPage";
 export const RoutesMain = () => {
   const [user, setUser] = useState(null);
 
-  console.log(user);
-
   return (
     <Routes>
       <Route path="/" element={<LoginPage user={user} setUser={setUser} />} />
