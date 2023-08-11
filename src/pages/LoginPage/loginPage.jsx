@@ -54,7 +54,7 @@ export const LoginPage = ({ user, setUser }) => {
                 type="email"
                 id="email"
                 placeholder="Digite seu email"
-                register={register("email")}
+                {...register("email")}
                 error={errors.email}
               />
               <Input
@@ -62,7 +62,7 @@ export const LoginPage = ({ user, setUser }) => {
                 type="password"
                 id="password"
                 placeholder="Digite sua senha"
-                register={register("password")}
+                {...register("password")}
                 error={errors.password}
               />
               <button type="submit" className="buttonPrimary">

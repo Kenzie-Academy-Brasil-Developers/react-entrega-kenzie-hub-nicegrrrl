@@ -55,7 +55,7 @@ export const RegisterPage = () => {
               type="text"
               id="name"
               placeholder="Digite aqui seu nome"
-              register={register("name")}
+              {...register("name")}
               error={errors.name}
             />
             <Input
@@ -63,7 +63,7 @@ export const RegisterPage = () => {
               type="email"
               id="email"
               placeholder="Digite aqui seu email"
-              register={register("email")}
+              {...register("email")}
               error={errors.email}
             />
             <Input
@@ -71,7 +71,7 @@ export const RegisterPage = () => {
               type="password"
               id="password"
               placeholder="Digite aqui sua senha"
-              register={register("password")}
+              {...register("password")}
               error={errors.password}
             />
             <Input
@@ -79,7 +79,7 @@ export const RegisterPage = () => {
               type="password"
               id="password"
               placeholder="Digite novamente sua senha"
-              register={register("confirmPassword")}
+              {...register("confirmPassword")}
               error={errors.confirmPassword}
             />
             <Input
@@ -87,7 +87,7 @@ export const RegisterPage = () => {
               type="text"
               id="bio"
               placeholder="Fale sobre você"
-              register={register("bio")}
+              {...register("bio")}
               error={errors.bio}
             />
             <Input
@@ -95,7 +95,7 @@ export const RegisterPage = () => {
               type="text"
               id="contact"
               placeholder="Opção de contato"
-              register={register("contact")}
+              {...register("contact")}
               error={errors.contact}
             />
             <Select
@@ -103,19 +103,16 @@ export const RegisterPage = () => {
               register={register("course_module")}
               error={errors.course_module}
             >
-              <option value="" selected disabled>
-                Selecione um módulo
-              </option>
-              <option value="firstModule">
+              <option value="Primeiro módulo (Introdução ao Frontend)">
                 Primeiro módulo (Introdução ao Frontend)
               </option>
-              <option value="secondModule">
+              <option value="Segundo módulo (Frontend Avançado)">
                 Segundo módulo (Frontend Avançado)
               </option>
-              <option value="thirdModule">
+              <option value="Terceiro módulo (Introdução ao Backend)">
                 Terceiro módulo (Introdução ao Backend)
               </option>
-              <option value="fourthModule">
+              <option value="Quarto módulo (Backend Avançado)">
                 Quarto módulo (Backend Avançado)
               </option>
             </Select>
