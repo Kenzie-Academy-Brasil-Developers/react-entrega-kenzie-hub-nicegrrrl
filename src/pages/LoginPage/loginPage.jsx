@@ -8,6 +8,7 @@ import { api } from "../../services/api.js";
 import { toast } from "react-toastify";
 import logo from "../../assets/mainLogo.svg";
 import styles from "./style.module.scss";
+import { InputPassword } from "../../components/forms/InputPassword/inputPassword";
 
 export const LoginPage = ({ user, setUser }) => {
   const {
@@ -57,9 +58,8 @@ export const LoginPage = ({ user, setUser }) => {
                 {...register("email")}
                 error={errors.email}
               />
-              <Input
+              <InputPassword
                 label="Senha"
-                type="password"
                 id="password"
                 placeholder="Digite sua senha"
                 {...register("password")}

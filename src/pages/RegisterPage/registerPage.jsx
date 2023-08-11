@@ -9,6 +9,7 @@ import { api } from "../../services/api.js";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
 import logo from "../../assets/logo.svg";
+import { InputPassword } from "../../components/forms/InputPassword/inputPassword";
 
 export const RegisterPage = () => {
   const {
@@ -66,17 +67,15 @@ export const RegisterPage = () => {
               {...register("email")}
               error={errors.email}
             />
-            <Input
+            <InputPassword
               label="Senha"
-              type="password"
               id="password"
               placeholder="Digite aqui sua senha"
               {...register("password")}
               error={errors.password}
             />
-            <Input
+            <InputPassword
               label="Confirmar senha"
-              type="password"
               id="password"
               placeholder="Digite novamente sua senha"
               {...register("confirmPassword")}

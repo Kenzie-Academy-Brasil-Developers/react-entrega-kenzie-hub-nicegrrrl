@@ -7,7 +7,7 @@ export const Header = ({ setUser }) => {
 
   const handleLogoutButtonClick = () => {
     localStorage.removeItem("@kenzieHub:token");
-    setUser({});
+    setUser(null);
     navigate("/");
   };
 

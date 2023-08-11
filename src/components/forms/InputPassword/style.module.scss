@@ -1,0 +1,17 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputPassword {
+  position: relative;
+
+  button {
+    position: absolute;
+    top: 13px;
+    right: 10px;
+    font-size: 20px;
+    color: var(--gray-1);
+  }
+}

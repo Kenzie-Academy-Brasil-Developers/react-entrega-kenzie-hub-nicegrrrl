@@ -5,7 +5,9 @@ import { DashboardPage } from "../pages/DashboardPage/dashboardPage";
 import { useState } from "react";
 
 export const RoutesMain = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
+
+  console.log(user);
 
   return (
     <Routes>
