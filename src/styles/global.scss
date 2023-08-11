@@ -1,4 +1,8 @@
 :root {
+  --toastify-color-dark: #343b41;
+  --toastify-color-success: #3fe864;
+  --toastify-color-error: #e83f5b;
+
   --color-primary: #ff577f;
   --color-primary-focus: #ff427f;
   --color-primary-negative: #59323f;
@@ -9,9 +13,6 @@
   --gray-3: #212529;
   --gray-4: #121214;
 
-  --success: #3fe864;
-  --negative: #e83f5b;
-
   --font-family: "Inter", sans-serif;
 }
 
@@ -20,4 +21,4 @@ body {
   font-family: var(--font-family);
   line-height: 150%;
   color: var(--gray-0);
-} 
+}
