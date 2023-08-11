@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import logo from "../../assets/mainLogo.svg";
 import styles from "./style.module.scss";
 import { InputPassword } from "../../components/forms/InputPassword/inputPassword";
+import { useState } from "react";
 
 export const LoginPage = ({ user, setUser }) => {
   const {
@@ -21,10 +22,12 @@ export const LoginPage = ({ user, setUser }) => {
 
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
   const userLoginRequest = async (formData) => {
     try {
+      setLoading(true);
       const { data } = await api.post("/sessions", formData);
-      console.log(data);
       setUser(data.user);
       localStorage.setItem("@kenzieHub:token", data.token);
       navigate("/dashboard");
@@ -33,8 +36,10 @@ export const LoginPage = ({ user, setUser }) => {
         error.response?.data.message ===
         "Incorrect email / password combination"
       ) {
-        toast.error("E-mail ou senha não correspondem 😅");
+        toast.error("Email ou senha não correspondem 😅");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -62,6 +67,7 @@ export const LoginPage = ({ user, setUser }) => {
                 id="email"
                 placeholder="Digite seu email"
                 {...register("email")}
+                disabled={loading}
                 error={errors.email}
               />
               <InputPassword
@@ -69,10 +75,15 @@ export const LoginPage = ({ user, setUser }) => {
                 id="password"
                 placeholder="Digite sua senha"
                 {...register("password")}
+                disabled={loading}
                 error={errors.password}
               />
-              <button type="submit" className="buttonPrimary">
-                Entrar
+              <button
+                type="submit"
+                className="buttonPrimary"
+                disabled={loading}
+              >
+                {loading ? "Entrando..." : "Entrar"}
               </button>
               <Link to="/register" className="headline bold center gray">
                 Ainda não possui uma conta?

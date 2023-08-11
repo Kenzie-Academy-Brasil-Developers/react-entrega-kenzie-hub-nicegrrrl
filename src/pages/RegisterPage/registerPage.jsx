@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
 import logo from "../../assets/logo.svg";
 import { InputPassword } from "../../components/forms/InputPassword/inputPassword";
+import { useState } from "react";
 
 export const RegisterPage = () => {
   const {
@@ -20,19 +21,25 @@ export const RegisterPage = () => {
 
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
   const userRegisterRequest = async (formData) => {
     try {
+      setLoading(true);
       const { data } = await api.post("/users", formData);
-      console.log(data);
       navigate("/");
+      toast.success("Cadastro realizado com sucesso 🎉");
     } catch (error) {
-      toast.error(error);
+      if (error.response?.data.message === "Email already exists") {
+        toast.error("Este email já foi cadastrado 😅");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
   const submit = (formData) => {
     userRegisterRequest(formData);
-    toast.success("Cadastro realizado com sucesso 🎉");
   };
 
   return (
@@ -56,6 +63,7 @@ export const RegisterPage = () => {
               type="text"
               id="name"
               placeholder="Digite aqui seu nome"
+              disabled={loading}
               {...register("name")}
               error={errors.name}
             />
@@ -64,6 +72,7 @@ export const RegisterPage = () => {
               type="email"
               id="email"
               placeholder="Digite aqui seu email"
+              disabled={loading}
               {...register("email")}
               error={errors.email}
             />
@@ -71,6 +80,7 @@ export const RegisterPage = () => {
               label="Senha"
               id="password"
               placeholder="Digite aqui sua senha"
+              disabled={loading}
               {...register("password")}
               error={errors.password}
             />
@@ -78,6 +88,7 @@ export const RegisterPage = () => {
               label="Confirmar senha"
               id="password"
               placeholder="Digite novamente sua senha"
+              disabled={loading}
               {...register("confirmPassword")}
               error={errors.confirmPassword}
             />
@@ -86,6 +97,7 @@ export const RegisterPage = () => {
               type="text"
               id="bio"
               placeholder="Fale sobre você"
+              disabled={loading}
               {...register("bio")}
               error={errors.bio}
             />
@@ -94,6 +106,7 @@ export const RegisterPage = () => {
               type="text"
               id="contact"
               placeholder="Opção de contato"
+              disabled={loading}
               {...register("contact")}
               error={errors.contact}
             />
@@ -115,8 +128,13 @@ export const RegisterPage = () => {
                 Quarto módulo (Backend Avançado)
               </option>
             </Select>
-            <button className="buttonPrimary negative" type="submit">
-              Cadastrar
+
+            <button
+              className="buttonPrimary negative"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? "Cadastrando..." : "Cadastrar"}
             </button>
           </Form>
         </div>

@@ -7,7 +7,7 @@ const App = () => {
   return (
     <>
       <RoutesMain />
-      <ToastContainer />
+      <ToastContainer autoClose={3000} />
     </>
   );
 };
