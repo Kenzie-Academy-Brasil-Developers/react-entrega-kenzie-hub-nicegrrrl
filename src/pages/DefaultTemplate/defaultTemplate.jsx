@@ -1,9 +1,9 @@
 import { Header } from "../../components/forms/Header/header";
 
-export const DefaultTemplate = ({ children, setUser }) => {
+export const DefaultTemplate = ({ children }) => {
   return (
     <>
-      <Header setUser={setUser} />
+      <Header />
       {children}
     </>
   );

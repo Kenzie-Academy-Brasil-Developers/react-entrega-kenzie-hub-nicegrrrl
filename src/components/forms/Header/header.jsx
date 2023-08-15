@@ -1,15 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/mainLogo.svg";
 import styles from "./style.module.scss";
+import { useUserContext } from "../../../providers/userContext/userContext";
 
-export const Header = ({ setUser }) => {
-  const navigate = useNavigate();
-
-  const handleLogoutButtonClick = () => {
-    localStorage.removeItem("@kenzieHub:token");
-    setUser(null);
-    navigate("/");
-  };
+export const Header = () => {
+  const { handleLogoutButtonClick } = useUserContext();
 
   return (
     <header className={styles.headerBox}>

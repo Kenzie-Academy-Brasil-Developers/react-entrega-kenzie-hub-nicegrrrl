@@ -1,17 +1,18 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Form } from "../../components/forms/Form/form";
 import { Input } from "../../components/forms/Input/input";
 import { useForm } from "react-hook-form";
 import { loginFormSchema } from "./loginFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { api } from "../../services/api.js";
-import { toast } from "react-toastify";
 import logo from "../../assets/mainLogo.svg";
 import styles from "./style.module.scss";
 import { InputPassword } from "../../components/forms/InputPassword/inputPassword";
 import { useState } from "react";
+import { useUserContext } from "../../providers/userContext/userContext";
 
-export const LoginPage = ({ user, setUser }) => {
+export const LoginPage = () => {
+  const { userLoginRequest } = useUserContext();
+
   const {
     register,
     handleSubmit,
@@ -20,31 +21,10 @@ export const LoginPage = ({ user, setUser }) => {
     resolver: zodResolver(loginFormSchema),
   });
 
-  const navigate = useNavigate();
-
   const [loading, setLoading] = useState(false);
 
-  const userLoginRequest = async (formData) => {
-    try {
-      setLoading(true);
-      const { data } = await api.post("/sessions", formData);
-      setUser(data.user);
-      localStorage.setItem("@kenzieHub:token", data.token);
-      navigate("/dashboard");
-    } catch (error) {
-      if (
-        error.response?.data.message ===
-        "Incorrect email / password combination"
-      ) {
-        toast.error("Email ou senha não correspondem 😅");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const submit = (formData) => {
-    userLoginRequest(formData);
+    userLoginRequest(formData, setLoading);
   };
 
   return (

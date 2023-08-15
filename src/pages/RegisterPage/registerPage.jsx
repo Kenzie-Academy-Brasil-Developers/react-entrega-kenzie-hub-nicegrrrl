@@ -1,16 +1,15 @@
 import { useForm } from "react-hook-form";
 import { Form } from "../../components/forms/Form/form";
-import { toast } from "react-toastify";
 import { Input } from "../../components/forms/Input/input";
 import { Select } from "../../components/forms/Select/select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerFormSchema } from "./registerFormSchema";
-import { api } from "../../services/api.js";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./style.module.scss";
 import logo from "../../assets/logo.svg";
 import { InputPassword } from "../../components/forms/InputPassword/inputPassword";
 import { useState } from "react";
+import { useUserContext } from "../../providers/userContext/userContext";
 
 export const RegisterPage = () => {
   const {
@@ -19,27 +18,12 @@ export const RegisterPage = () => {
     formState: { errors },
   } = useForm({ resolver: zodResolver(registerFormSchema) });
 
-  const navigate = useNavigate();
+  const { userRegisterRequest } = useUserContext();
 
   const [loading, setLoading] = useState(false);
 
-  const userRegisterRequest = async (formData) => {
-    try {
-      setLoading(true);
-      const { data } = await api.post("/users", formData);
-      navigate("/");
-      toast.success("Cadastro realizado com sucesso 🎉");
-    } catch (error) {
-      if (error.response?.data.message === "Email already exists") {
-        toast.error("Este email já foi cadastrado 😅");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const submit = (formData) => {
-    userRegisterRequest(formData);
+    userRegisterRequest(formData, setLoading);
   };
 
   return (

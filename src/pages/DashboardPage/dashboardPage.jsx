@@ -1,7 +1,10 @@
+import { useUserContext } from "../../providers/userContext/userContext";
 import { DefaultTemplate } from "../DefaultTemplate/defaultTemplate";
 import styles from "./style.module.scss";
 
-export const DashboardPage = ({ user, setUser }) => {
+export const DashboardPage = () => {
+  const { user, setUser } = useUserContext();
+
   return (
     <>
       <DefaultTemplate setUser={setUser}>
