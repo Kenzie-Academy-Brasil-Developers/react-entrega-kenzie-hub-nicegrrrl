@@ -9,7 +9,7 @@ import styles from "./style.module.scss";
 import logo from "../../assets/logo.svg";
 import { InputPassword } from "../../components/forms/InputPassword/inputPassword";
 import { useState } from "react";
-import { useUserContext } from "../../providers/userContext/userContext";
+import { useUserContext } from "../../providers/UserContext/userContext.jsx";
 
 export const RegisterPage = () => {
   const {

@@ -1,6 +1,6 @@
 import logo from "../../../assets/mainLogo.svg";
 import styles from "./style.module.scss";
-import { useUserContext } from "../../../providers/userContext/userContext";
+import { useUserContext } from "../../../providers/UserContext/userContext.jsx";
 
 export const Header = () => {
   const { handleLogoutButtonClick } = useUserContext();

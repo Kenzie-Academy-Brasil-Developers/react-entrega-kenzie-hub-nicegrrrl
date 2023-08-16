@@ -8,7 +8,7 @@ import logo from "../../assets/mainLogo.svg";
 import styles from "./style.module.scss";
 import { InputPassword } from "../../components/forms/InputPassword/inputPassword";
 import { useState } from "react";
-import { useUserContext } from "../../providers/userContext/userContext";
+import { useUserContext } from "../../providers/UserContext/userContext.jsx";
 
 export const LoginPage = () => {
   const { userLoginRequest } = useUserContext();
