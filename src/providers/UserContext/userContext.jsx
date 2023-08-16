@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,27 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("@kenzieHub:token");
+    const loadUser = async () => {
+      try {
+        const { data } = await api.get("/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(data);
+        navigate("/dashboard");
+      } catch (error) {
+        console.log(error);
+        localStorage.removeItem("@kenzieHub:token");
+      }
+    };
+    if (token) {
+      loadUser();
+    }
+  }, []);
 
   const userRegisterRequest = async (formData, setLoading) => {
     try {
@@ -31,6 +52,7 @@ export const UserProvider = ({ children }) => {
       const { data } = await api.post("/sessions", formData);
       setUser(data.user);
       localStorage.setItem("@kenzieHub:token", data.token);
+      // localStorage.setItem("@kenzieHub:userId", data.user.id);
       navigate("/dashboard");
     } catch (error) {
       if (
@@ -46,6 +68,7 @@ export const UserProvider = ({ children }) => {
 
   const handleLogoutButtonClick = () => {
     localStorage.removeItem("@kenzieHub:token");
+    // localStorage.removeItem("@kenzieHub:userId");
     setUser(null);
     navigate("/");
   };
