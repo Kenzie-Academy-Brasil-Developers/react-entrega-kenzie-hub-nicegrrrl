@@ -8,12 +8,15 @@ export const UserContext = createContext({});
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  const [loadingPage, setLoadingPage] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("@kenzieHub:token");
     const loadUser = async () => {
       try {
+        setLoadingPage(true);
         const { data } = await api.get("/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -24,6 +27,8 @@ export const UserProvider = ({ children }) => {
       } catch (error) {
         console.log(error);
         localStorage.removeItem("@kenzieHub:token");
+      } finally {
+        setLoadingPage(false);
       }
     };
     if (token) {
@@ -52,7 +57,6 @@ export const UserProvider = ({ children }) => {
       const { data } = await api.post("/sessions", formData);
       setUser(data.user);
       localStorage.setItem("@kenzieHub:token", data.token);
-      // localStorage.setItem("@kenzieHub:userId", data.user.id);
       navigate("/dashboard");
     } catch (error) {
       if (
@@ -68,7 +72,6 @@ export const UserProvider = ({ children }) => {
 
   const handleLogoutButtonClick = () => {
     localStorage.removeItem("@kenzieHub:token");
-    // localStorage.removeItem("@kenzieHub:userId");
     setUser(null);
     navigate("/");
   };
@@ -78,6 +81,7 @@ export const UserProvider = ({ children }) => {
       value={{
         user,
         setUser,
+        loadingPage,
         userRegisterRequest,
         userLoginRequest,
         handleLogoutButtonClick,
