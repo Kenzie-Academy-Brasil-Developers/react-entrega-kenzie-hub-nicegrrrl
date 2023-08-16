@@ -12,7 +12,7 @@ const App = () => {
     <>
       {loadingPage ? <Loading /> : <RoutesMain />}
 
-      <ToastContainer autoClose={3000} theme="dark" />
+      {/* <ToastContainer autoClose={3000} theme="dark" /> */}
     </>
   );
 };
