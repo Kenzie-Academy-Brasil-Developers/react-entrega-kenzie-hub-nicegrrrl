@@ -7,10 +7,11 @@ export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
   const [loadingPage, setLoadingPage] = useState(false);
 
   const navigate = useNavigate();
+
+  const pathname = window.location.pathname;
 
   useEffect(() => {
     const token = localStorage.getItem("@kenzieHub:token");
@@ -23,7 +24,7 @@ export const UserProvider = ({ children }) => {
           },
         });
         setUser(data);
-        navigate("/dashboard");
+        navigate(pathname);
       } catch (error) {
         console.log(error);
         localStorage.removeItem("@kenzieHub:token");
