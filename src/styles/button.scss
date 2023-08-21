@@ -46,4 +46,8 @@
   &:hover {
     background-color: var(--gray-2);
   }
+
+  &.thin {
+    padding: 0 11px !important;
+  }
 }

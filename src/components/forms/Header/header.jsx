@@ -10,7 +10,7 @@ export const Header = () => {
       <div className="container">
         <div className={styles.headerElements}>
           <img className={styles.logo} src={logo} alt="logo kenzie hub" />
-          <button className="buttonMedium" onClick={handleLogoutButtonClick}>
+          <button className="buttonMedium " onClick={handleLogoutButtonClick}>
             Sair
           </button>
         </div>
