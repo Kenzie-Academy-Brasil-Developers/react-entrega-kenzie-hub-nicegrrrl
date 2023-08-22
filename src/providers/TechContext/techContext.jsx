@@ -7,7 +7,7 @@ export const TechContext = createContext({});
 export const TechProvider = ({ children }) => {
   const [createTech, setCreateTech] = useState(false);
 
-  const { setTechList } = useUserContext();
+  const { techList, setTechList } = useUserContext();
 
   const createTechRequest = async (formData) => {
     try {
