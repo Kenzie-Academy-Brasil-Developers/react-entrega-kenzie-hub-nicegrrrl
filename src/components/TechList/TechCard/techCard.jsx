@@ -3,7 +3,7 @@ import styles from "./style.module.scss";
 import { useTechContext } from "../../../providers/TechContext/techContext";
 
 export const TechCard = ({ tech }) => {
-  const { setEditingTech } = useTechContext();
+  const { setEditingTech, deleteTaskRequest } = useTechContext();
 
   return (
     <li>
@@ -11,10 +11,13 @@ export const TechCard = ({ tech }) => {
         <p className="title2">{tech.title}</p>
         <div className={styles.info}>
           <span className="headline gray">{tech.status}</span>
-          <button aria-label="edit" onClick={() => setEditingTech(tech)}>
+          <button aria-label="edit tech" onClick={() => setEditingTech(tech)}>
             <FiEdit2 size={15} />
           </button>
-          <button>
+          <button
+            aria-label="delete tech"
+            onClick={() => deleteTaskRequest(tech.id)}
+          >
             <FiTrash2 size={15} />
           </button>
         </div>

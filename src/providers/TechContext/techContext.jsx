@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { api } from "../../services/api";
 import { useUserContext } from "../UserContext/userContext";
+import { toast } from "react-toastify";
 
 export const TechContext = createContext({});
 
@@ -18,8 +19,12 @@ export const TechProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(data);
+
       setTechList([...techList, data]);
+
+      setCreateTech(false);
+
+      toast.success("Tech criada com sucesso 🎉");
     } catch (error) {
       console.log(error);
     }
@@ -35,6 +40,7 @@ export const TechProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       });
+
       const newTechList = techList.map((tech) => {
         if (tech.id === editingTech.id) {
           return data;
@@ -42,8 +48,30 @@ export const TechProvider = ({ children }) => {
           return tech;
         }
       });
+
       setTechList(newTechList);
       setEditingTech(null);
+
+      toast.success("Status da tech alterado com sucesso 🎉");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteTaskRequest = async (deletingId) => {
+    try {
+      const token = localStorage.getItem("@kenzieHub:token");
+
+      await api.delete(`/users/techs/${deletingId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const newTechList = techList.filter((tech) => tech.id !== deletingId);
+      setTechList(newTechList);
+
+      toast.success("Tech deletada com sucesso 🎉");
     } catch (error) {
       console.log(error);
     }
@@ -58,6 +86,7 @@ export const TechProvider = ({ children }) => {
         editingTech,
         setEditingTech,
         updateTechRequest,
+        deleteTaskRequest,
       }}
     >
       {children}

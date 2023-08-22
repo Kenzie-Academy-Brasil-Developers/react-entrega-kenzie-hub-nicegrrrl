@@ -13,7 +13,7 @@ export const TechListSection = () => {
           <h3 className="title2">Tecnologias </h3>
           <button
             className="buttonMedium thin"
-            aria-label="add"
+            aria-label="add new tech"
             onClick={() => setCreateTech(true)}
           >
             <BiPlus size={18} />
