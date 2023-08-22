@@ -6,20 +6,22 @@ export const TechCard = ({ tech }) => {
   const { setEditingTech, deleteTaskRequest } = useTechContext();
 
   return (
-    <li>
+    <li className={styles.listItem}>
       <div className={styles.listItemContent}>
         <p className="title2">{tech.title}</p>
         <div className={styles.info}>
           <span className="headline gray">{tech.status}</span>
-          <button aria-label="edit tech" onClick={() => setEditingTech(tech)}>
-            <FiEdit2 size={15} />
-          </button>
-          <button
-            aria-label="delete tech"
-            onClick={() => deleteTaskRequest(tech.id)}
-          >
-            <FiTrash2 size={15} />
-          </button>
+          <div className={styles.buttons}>
+            <button aria-label="edit tech" onClick={() => setEditingTech(tech)}>
+              <FiEdit2 size={15} />
+            </button>
+            <button
+              aria-label="delete tech"
+              onClick={() => deleteTaskRequest(tech.id)}
+            >
+              <FiTrash2 size={15} />
+            </button>
+          </div>
         </div>
       </div>
     </li>
