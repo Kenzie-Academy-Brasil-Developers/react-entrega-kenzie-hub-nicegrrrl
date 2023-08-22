@@ -6,6 +6,7 @@ export const TechContext = createContext({});
 
 export const TechProvider = ({ children }) => {
   const [createTech, setCreateTech] = useState(false);
+  const [editingTech, setEditingTech] = useState(null);
 
   const { techList, setTechList } = useUserContext();
 
@@ -24,9 +25,40 @@ export const TechProvider = ({ children }) => {
     }
   };
 
+  const updateTechRequest = async (formData) => {
+    try {
+      const techId = editingTech.id;
+      const token = localStorage.getItem("@kenzieHub:token");
+
+      const { data } = await api.put(`/users/techs/${techId}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const newTechList = techList.map((tech) => {
+        if (tech.id === editingTech.id) {
+          return data;
+        } else {
+          return tech;
+        }
+      });
+      setTechList(newTechList);
+      setEditingTech(null);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <TechContext.Provider
-      value={{ createTech, setCreateTech, createTechRequest }}
+      value={{
+        createTech,
+        setCreateTech,
+        createTechRequest,
+        editingTech,
+        setEditingTech,
+        updateTechRequest,
+      }}
     >
       {children}
     </TechContext.Provider>

@@ -14,8 +14,6 @@ export const UserProvider = ({ children }) => {
 
   const pathname = window.location.pathname;
 
-  console.log(user);
-
   useEffect(() => {
     const token = localStorage.getItem("@kenzieHub:token");
     const loadUser = async () => {
