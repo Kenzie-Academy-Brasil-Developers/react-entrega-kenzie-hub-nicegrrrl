@@ -1,7 +1,7 @@
 .inputContainer {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 input:disabled {
@@ -20,7 +20,7 @@ button:disabled {
     position: absolute;
     top: 13px;
     right: 10px;
-    font-size: 20px;
+    font-size: 1.25rem;
     color: var(--gray-1);
   }
 }

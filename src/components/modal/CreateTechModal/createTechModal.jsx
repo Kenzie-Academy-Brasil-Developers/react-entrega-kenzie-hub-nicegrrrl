@@ -52,7 +52,12 @@ export const CreateTechModal = () => {
           </button>
         </div>
         <form className={styles.modalContent} onSubmit={handleSubmit(submit)}>
-          <Input label="Nome" type="text" {...register("title")} />
+          <Input
+            label="Nome"
+            required={true}
+            type="text"
+            {...register("title")}
+          />
           <Select label="Selecionar status" register={register("status")}>
             <option value="Iniciante">Iniciante</option>
             <option value="Intermediário">Intermediário</option>

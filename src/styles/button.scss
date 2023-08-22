@@ -40,7 +40,7 @@
 
 .buttonMedium {
   @extend %allButtons;
-  height: 36px;
+  height: 2.25rem;
   background-color: var(--gray-3);
 
   &:hover {

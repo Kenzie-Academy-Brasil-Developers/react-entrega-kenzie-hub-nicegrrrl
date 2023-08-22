@@ -9,16 +9,16 @@
 }
 
 .listItemContent {
-  height: 76px;
-  padding: 8px 22px;
+  height: 4.75rem;
+  padding: 0.5rem 1.375rem;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: 8px;
+  gap: 0.5rem;
 
   @media (min-width: 600px) {
-    height: 49px;
+    height: 3.0625rem;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -38,17 +38,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 6px;
+  gap: 0.375rem;
 
   @media (min-width: 600px) {
     width: 10%;
-    min-width: 150px;
+    min-width: 9.375rem;
   }
 }
 
 .buttons {
   display: flex;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .activeTech {
