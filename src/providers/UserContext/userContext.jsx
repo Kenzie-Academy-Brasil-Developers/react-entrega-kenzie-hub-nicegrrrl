@@ -8,10 +8,13 @@ export const UserContext = createContext({});
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loadingPage, setLoadingPage] = useState(false);
+  const [techList, setTechList] = useState([]);
 
   const navigate = useNavigate();
 
   const pathname = window.location.pathname;
+
+  console.log(user);
 
   useEffect(() => {
     const token = localStorage.getItem("@kenzieHub:token");
@@ -25,6 +28,7 @@ export const UserProvider = ({ children }) => {
         });
         setUser(data);
         navigate(pathname);
+        setTechList(data.techs);
       } catch (error) {
         console.log(error);
         localStorage.removeItem("@kenzieHub:token");
@@ -86,6 +90,8 @@ export const UserProvider = ({ children }) => {
         userRegisterRequest,
         userLoginRequest,
         handleLogoutButtonClick,
+        techList,
+        setTechList,
       }}
     >
       {children}

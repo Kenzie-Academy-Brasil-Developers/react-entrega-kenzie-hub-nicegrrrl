@@ -3,22 +3,29 @@ import { Input } from "../../forms/Input/input";
 import { Select } from "../../forms/Select/select";
 import { AiOutlineClose } from "react-icons/ai";
 import styles from "./style.module.scss";
+import { useForm } from "react-hook-form";
 
 export const CreateTechModal = () => {
-  const { setCreateTech } = useTechContext();
+  const { setCreateTech, createTechRequest } = useTechContext();
+
+  const { register, handleSubmit } = useForm();
+
+  const submit = (formData) => {
+    createTechRequest(formData);
+  };
 
   return (
     <div className={styles.modalOverlay} role="dialog">
       <div className={styles.modalBox}>
         <div className={styles.modalHeader}>
           <h2 className="title2">Cadastrar tecnologia</h2>
-          <button onClick={() => setCreateTech(false)}>
+          <button aria-label="close" onClick={() => setCreateTech(false)}>
             <AiOutlineClose />
           </button>
         </div>
-        <form className={styles.modalContent}>
-          <Input label="Nome" type="text" />
-          <Select label="Selecionar status">
+        <form className={styles.modalContent} onSubmit={handleSubmit(submit)}>
+          <Input label="Nome" type="text" {...register("title")} />
+          <Select label="Selecionar status" register={register("status")}>
             <option value="Iniciante">Iniciante</option>
             <option value="Intermediário">Intermediário</option>
             <option value="Avançado">Avançado</option>
