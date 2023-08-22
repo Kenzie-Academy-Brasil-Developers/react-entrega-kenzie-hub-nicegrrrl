@@ -8,6 +8,7 @@ export const TechContext = createContext({});
 export const TechProvider = ({ children }) => {
   const [createTech, setCreateTech] = useState(false);
   const [editingTech, setEditingTech] = useState(null);
+  const [currentId, setCurrentId] = useState(null);
 
   const { techList, setTechList } = useUserContext();
 
@@ -26,6 +27,12 @@ export const TechProvider = ({ children }) => {
 
       toast.success("Tech criada com sucesso 🎉");
     } catch (error) {
+      if (
+        error.response.data.message ===
+        "User Already have this technology created you can only update it"
+      ) {
+        toast.error("Essa tech já foi criada, mas você pode editá-la 🤗");
+      }
       console.log(error);
     }
   };
@@ -87,6 +94,8 @@ export const TechProvider = ({ children }) => {
         setEditingTech,
         updateTechRequest,
         deleteTaskRequest,
+        currentId,
+        setCurrentId,
       }}
     >
       {children}

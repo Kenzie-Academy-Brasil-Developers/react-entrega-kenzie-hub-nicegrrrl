@@ -4,18 +4,46 @@ import { Select } from "../../forms/Select/select";
 import { AiOutlineClose } from "react-icons/ai";
 import styles from "./style.module.scss";
 import { useForm } from "react-hook-form";
+import { useEffect, useRef } from "react";
 
 export const CreateTechModal = () => {
   const { setCreateTech, createTechRequest } = useTechContext();
 
   const { register, handleSubmit } = useForm();
 
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutClick = (event) => {
+      if (!modalRef.current?.contains(event.target)) {
+        setCreateTech(false);
+      }
+    };
+    window.addEventListener("mousedown", handleOutClick);
+    return () => {
+      window.removeEventListener("mousedown", handleOutClick);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleKeydown = (event) => {
+      if (event.key === "Escape") {
+        setCreateTech(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeydown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeydown);
+    };
+  }, []);
+
   const submit = (formData) => {
     createTechRequest(formData);
   };
 
   return (
-    <div className={styles.modalOverlay} role="dialog">
+    <div ref={modalRef} className={styles.modalOverlay} role="dialog">
       <div className={styles.modalBox}>
         <div className={styles.modalHeader}>
           <h2 className="title2">Cadastrar tecnologia</h2>
