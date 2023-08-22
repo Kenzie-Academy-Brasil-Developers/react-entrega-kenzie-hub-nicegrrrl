@@ -2,9 +2,11 @@ import { TechList } from "../../TechList/techList";
 import { BiPlus } from "react-icons/bi";
 import styles from "./style.module.scss";
 import { useTechContext } from "../../../providers/TechContext/techContext";
+import { useUserContext } from "../../../providers/UserContext/userContext";
 
 export const TechListSection = () => {
   const { setCreateTech } = useTechContext();
+  const { techList } = useUserContext();
 
   return (
     <section>
@@ -19,7 +21,11 @@ export const TechListSection = () => {
             <BiPlus size={18} />
           </button>
         </div>
-        <TechList />
+        {techList.length > 0 ? (
+          <TechList />
+        ) : (
+          <p className={styles.noTechMessage}>Nenhuma tech cadastrada. 👀</p>
+        )}
       </div>
     </section>
   );
